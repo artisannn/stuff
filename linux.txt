@@ -1,0 +1,22 @@
+Показывает кто пользуется в данный момент этим файлом:
+	sudo fuser -v /var/lib/dpkg/lock
+
+После чего вводим команду, которая переконфигурирует пакетный менеджер:
+	sudo dpkg --configure -a
+	
+Проги(установка, удаление и т.д.):
+	Ищем проги:
+		sudo apt-cache search keyword
+	Устанавливаем проги:
+		Перед установкой программ необходим обновить версии установленных программ и библиотек, выполнив последовательно команды:
+			sudo apt-get update
+			sudo apt-get upgrade
+		sudo apt-get install <имя проги или пакета>
+	Удаляем:
+		sudo apt-get remove paket
+		
+Добавляем пользователя Arthur в группу SomeGroup:
+	sudo adduser Arthur SomeGroup
+		
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyhd "C:\Users\carve\VirtualBox VMs\Ubunta\Ubunta.vdi" --resize 25000	
+	C:\Users\carve\VirtualBox VMs\Ubunta
