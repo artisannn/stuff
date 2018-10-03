@@ -1,0 +1,12 @@
+
+
+pop_front()
+pop_back()
+
+push_front()
+push_back()
+
+insert()
+
+erase() удаляем целый диапазон
+remove() удаляем поэлементно
