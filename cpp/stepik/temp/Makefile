@@ -1,0 +1,2 @@
+all:
+	g++ temp.cpp
