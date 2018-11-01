@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>765</width>
+    <height>547</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MetaData</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>456</width>
+    <height>33</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QTreeWidget" name="treeWidget">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>&gt;</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+.</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="text">
+             <string>&lt;</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+,</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTreeWidget" name="treeWidget_2">
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>765</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMmetadata">
+    <property name="title">
+     <string>Соединение</string>
+    </property>
+    <addaction name="action_connect"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action_refresh"/>
+    <addaction name="separator"/>
+    <addaction name="action_unload"/>
+    <addaction name="action_load"/>
+    <addaction name="separator"/>
+    <addaction name="action_search"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <addaction name="menuMmetadata"/>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_connect"/>
+   <addaction name="action_unload"/>
+   <addaction name="action_load"/>
+   <addaction name="action_search"/>
+   <addaction name="action_refresh"/>
+   <addaction name="action_exit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_connect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/plugin.png</normaloff>icons/flaticons/plugin.png</iconset>
+   </property>
+   <property name="text">
+    <string>Подключить к БД</string>
+   </property>
+   <property name="toolTip">
+    <string>Подключение к БД</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_unload">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/arrowup.png</normaloff>icons/flaticons/arrowup.png</iconset>
+   </property>
+   <property name="text">
+    <string>Выгрузка документов</string>
+   </property>
+   <property name="toolTip">
+    <string>Выгрузка метаданных документов на диск с БД</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="action_load">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/arrowdown.png</normaloff>icons/flaticons/arrowdown.png</iconset>
+   </property>
+   <property name="text">
+    <string>Загрузка документов</string>
+   </property>
+   <property name="toolTip">
+    <string>Загрузка метаданных документов с диска в БД</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="action_search">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/magnifyingglass.png</normaloff>icons/flaticons/magnifyingglass.png</iconset>
+   </property>
+   <property name="text">
+    <string>Найти</string>
+   </property>
+   <property name="toolTip">
+    <string>Найти документ в списке</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_refresh">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/reload-icon.png</normaloff>icons/flaticons/reload-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Обновить</string>
+   </property>
+   <property name="toolTip">
+    <string>Обновить экран</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/flaticons/power.png</normaloff>icons/flaticons/power.png</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="toolTip">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

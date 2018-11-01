@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/alert_lamp_off.ico</file>
+        <file>icons/alert_lamp_on.ico</file>
+        <file>icons/message.ico</file>
+    </qresource>
+</RCC>
