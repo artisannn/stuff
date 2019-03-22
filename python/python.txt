@@ -25,7 +25,11 @@
 
 Юникодная строка:
 
-	st = u"Some_string"
+	st = u"Some string"
+
+Байтовая строка
+
+	st = b"Some string"
 
 Оператор % для строк как на Си в printf:
 
@@ -35,4 +39,17 @@
 	import numpy
 	numpy.eye.....
 Чтоб избежать этого можно включить в наше пространство имен имя модуля:
-	from numpy import numpy
+	from numpy import numpy или
+	from numpy import *
+
+if 'a' in d:
+	d['a'].append(1)
+else:
+	d['a'] = [1]
+#		 ^
+#		|||
+#		 v
+d.setdefault('b',[]).append(1)
+# Эта штука за тебя посмотрит есть ли элемент в словаре с таким клчом
+# и ели его нет, то создаст его и вернет ссылку на него
+print(d)

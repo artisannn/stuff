@@ -1,3 +1,7 @@
+<<<<<<< 64e6c5c0310a1d0754778f76cd8b0d239ca37104
 Qt/build*
 *.swp
 *.ini
+=======
+*.user
+>>>>>>>  add gitignore,train,python.txt
