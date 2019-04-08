@@ -1,0 +1,15 @@
+https://admins.su/znakomstvo-s-cmake-2/
+
+cmake_minimum_required(VERSION 3.1)
+
+
+project(project_name) project_name присваивается переменной окружения PROJECT_NAME
+
+set (ИМЯ_ПЕРЕМЕННОЙ ЗНАЧЕНИЕ)
+
+
+
+include_directories(ПЕРЕЧИСЛЯЕМ_ПУТИ_ГДЕ_ЛЕЖАТ_inculud'ы через пробел(?))
+
+add_definitions(-Wall -O2)
+Добавляем директивы комплиятора
