@@ -24,12 +24,13 @@ void str_reverse(char * start, char * end)
     }
 }
 
-void c_shift(char * str, int n)
+void c_shift(char * str, int n) noexcept
 {
     char * end = str+strlen(str)-1;
     str_reverse(str, str + n-1);
     str_reverse(str+n, end);
     str_reverse(str, end);
+    throw string("Hey!");
 }
 
 int main()
@@ -38,7 +39,13 @@ int main()
     char * str = strdup("Hello!");
     printf("%s\n", str);
 
-    c_shift(str , 2);
+    try{
+        c_shift(str , 2);
+    }
+    catch(string s){
+        cout<< s << endl;
+    }
+
     printf("%s\n", str);
 
     return 0;
