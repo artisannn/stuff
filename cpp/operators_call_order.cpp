@@ -9,7 +9,8 @@ using namespace std;
 
 	return value
 	=, prefix ++ and -- returns only reference!
-	-,+,s
+	<, =, >, <=, ==, >=, != - returns bool
+	others return copy of this* or one of operands
 */
 struct B {};
 
