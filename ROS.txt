@@ -1,0 +1,192 @@
+
+
+
+*** Установка доп пакетов ***
+
+	apt-get install ros-<UBUBNTU-VERSION>-<PACKAGE-NAME>
+	apt-get install ros-kinetic-gmapping
+
+*** Поиск нужных пакетов(среди установленных) ***
+
+	rospack find gmapping
+
+*** Просмотр содержимого пакета ***
+
+	rosls gmapping
+
+*** Переход в директорию пакета ***
+
+	roscd gmapping
+
+**** Любой бинарь в ROS это узел(нода). Для запуска любой ROS-ноды в первую очередь вызываем roscore ****
+
+	roscore
+
+**** Далее, чтоб запустить ноду выполняем rosrun <PACKAGE-NAME> <NODE-NAME> __name=:<NAME>
+
+	rosrun turtlesim turtlesim_node
+	* По умолчанию любая нода запускается с каким-то дефолтным именем
+	* (если не задавать иного в параметре __name). Поэтому, если запустить
+	* снова ту же ноду не убив прежнюю, то прежняя сама прекратит свою работу
+	* Короче, если хочешь запустить ноду в нескольких экземплярах, нужно запускать
+	* их с разными именами указанными в параметре __name
+
+*** Список запущенных нод ***
+
+	rosnode list
+
+*** Инфа по ноде ***
+
+	rosnode info <NODE-NAME>
+	rosnode info /turtlesim
+	* На какие топики подписана, куда публикует, какой тип сообщений и т.д.
+
+*** Инфа по топику ***
+
+	rostopic info <TOPIC-NAME>
+	* Появится инфа о том какого типа сообщения идут на этот топик, кто в данный момент
+	* публикует и кто на него подписан
+
+*** Полный разбор типа ***
+
+	rosmsg show <TYPE-NAME>
+
+*** Кладем вручную сообщения в любой топик ***
+
+	rostopic pub <TOPIC-NAME> <MSG-TYPE> TAB
+	* Нажимая на TAB, переводим консоль в интереактивный режим, в котором можем легко забить
+	* все поля сообщения
+
+*** Смотрим трафик на топике (какие сообщения идут в данный момент)
+
+	rostopic echo <TOPIC-NAME>
+
+*** Совокупность свзей нод и топиков в виде графа ***
+
+	rosrun rqt_graph rqt_graph
+
+
+
+
+*********************************************************
+*							*	
+*							*
+*		Пилим первую ноду!			*
+*							*	
+*							*
+*********************************************************
+
+	mkdir -p workspace/src	// Сначала руками создаем workspace/src
+	cd workspace/src
+	catkin_init_workspace	// Инитим воркспейс в котором автомтом создается ссылка CmakeList-файл
+				// эта команда должна вызываться исключительно из папки src!!!
+
+	catkin_create_pkg <PACKAGE-NAME> <DEPENDENCIES>	// Создаем пакет со всеми нужными зависимостями
+							// желательно, roscpp указывать
+
+mkdir -p workspace/src && 
+cd workspace/src && 
+catkin_init_workspace &&
+catkin_create_pkg
+
+*********************************************************
+*							*	
+*		Здесь происходит нудная			*
+*		и сложная подготовка 			*	
+*		<PACKAGE-NAME>/CmakeLists.txt		*
+*							*
+*********************************************************
+
+*** Далее, все собираем с помощью catkin_make. Вызываем ее только из папки workspace! ***
+
+	catkin_make	// Эта штука соберет ВСЕ пакеты находящиеся в этом пакете
+
+*** После каждой сборки запускаем скрипт setup.bash, иначе, нода не запустится
+
+	source devel/setup.bash
+
+
+
+
+
+*********************************************************
+*							*	
+*			Как подготовить			*	
+*		<PACKAGE-NAME>/CmakeLists.txt		*
+*							*
+*********************************************************
+
+1. Добавляем возможность писать на совеременных плюсах
+	# add_compile_options(-std=c++11)
+
+2. Указываем все зависимости сборки после слова REQUIRED(помимо catkin)
+	find_package(catkin REQUIRED COMPONENTS
+	  roscpp
+	)
+
+3. Если пилим свои сообщения, то раскоментим эти строки
+	## Generate messages in the 'msg' folder
+	# add_message_files(
+	#   FILES
+	#   Message1.msg
+	#   Message2.msg
+	# )
+
+	И вот эти еще
+
+	## Generate added messages and services with any dependencies listed here
+	# generate_messages(
+	#   DEPENDENCIES
+	#   std_msgs  # Or other packages containing msgs
+	# )
+
+4. Для более или менее сложного кода (расположенного более чем на одном файле)
+   придется еще и повозиться с этим
+
+	catkin_package(
+	#  INCLUDE_DIRS include		// это раскоментить если экспортируем наши .h файлы
+	#  LIBRARIES test_eigen
+	#  CATKIN_DEPENDS roscpp
+	#  DEPENDS system_lib
+	)
+5. Если хотим чтоб софтина собралась как либа, а не самостоятельный бинарь, то нужно это
+// add_library(	<ИМЯ-ОБЪЕКТОНОГО-ФАЙЛА-НА-ВЫХОДЕ>
+		<ИМЯ-ФАЙЛА-С-ИСХОДНИКАМИ>) 
+
+	## Declare a C++ library
+	# add_library(${PROJECT_NAME}
+	#   src/${PROJECT_NAME}/test_eigen.cpp	// НАЗВАНИЯ ФАЙЛОВ АВТОСГЕНЕРИРОВАНЫ!!
+	# )					// ЗА ЭТИМ НАДО СЛЕДИТЬ САМОМУ
+
+6. Если же хотим чтоб она собралась как исполняемый бинарь, то юзаем эти строки
+// add_executable(	<ИМЯ-ОБЪЕКТОНОГО-ФАЙЛА-НА-ВЫХОДЕ>
+			<ИМЯ-ФАЙЛА-С-ИСХОДНИКАМИ>)
+ 
+	## Declare a C++ executable
+	## With catkin_make all packages are built within a single CMake context
+	## The recommended prefix ensures that target names across packages don't collide
+	# add_executable(${PROJECT_NAME}_node src/test_eigen_node.cpp)	// НАЗВАНИЯ ФАЙЛОВ АВТОСГЕНЕРИРОВАНЫ!!
+									// ЗА ЭТИМ НАДО СЛЕДИТЬ САМОМУ
+
+7. Это используем чтоб указать зависимости рантайма (catkin_LIBRARIES нужен всегда),
+  так что раскоментим это в любом случае.
+
+	## Specify libraries to link a library or executable target against
+	# target_link_libraries(${PROJECT_NAME}_node
+	#   ${catkin_LIBRARIES}
+	# )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

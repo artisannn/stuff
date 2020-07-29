@@ -13,3 +13,18 @@ include_directories(ПЕРЕЧИСЛЯЕМ_ПУТИ_ГДЕ_ЛЕЖАТ_inculud'ы
 
 add_definitions(-Wall -O2)
 Добавляем директивы комплиятора
+
+Обычно после установки пакета (чаще всего apt get) в директорию /usr/share/cmake/Modules
+кладутся специальные CMake файлы с названием типа FindFoo.cmake
+как правило, в них просто заводятся переменные окружения:
+
+@PACKAGE_INIT@
+set(Foo_INCLUDE_DIRS "/usr/include/Foo1.0/include")
+set(Foo_LIBRARY_DIRS "/usr/lib/Foo1.0")
+
+Далее можно использовать
+
+find_package(Foo 1.0.2 CONFIG REQUIRED)
+...
+target_include_directories(${PROJECT_NAME} ${Foo_INCLUDE_DIRS})
+
