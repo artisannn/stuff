@@ -98,6 +98,7 @@ git commit -m "Remove submodule $submodule"
 *** удалили ***
 
 ********** rebase **********
+
 git checkout feature/...
 git rebase [НА] master        // ребейзнулись на мастер [feature/... поставили на master]
 
